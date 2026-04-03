@@ -1,2 +1,1 @@
-# NearYou
-Projekat iz predmeta softversko inzenjerstvo
+# Dev branch - initial README

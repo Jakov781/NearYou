@@ -1,0 +1,212 @@
+@import './base.css';
+
+/* =========================================
+   1. CONFIG & VARIABLES
+   ========================================= */
+:root {
+  /* --- 1a. CORE COLORS --- */
+  --primary:   #4d90fd; /* Plava */
+  --secondary: #8b5cf6; /* Ljubicasta */
+  --success:   #22c55e; /* Zelena */
+  --warning:   #f59e0b; /* Narandzasta */
+  --danger:    #ef4444; /* Crvena */
+  --info:      #06b6d4; /* Cijan */
+
+  /* --- 1b. BASE COLORS (Neutralna skala) --- */
+  --base-white: #ffffff;
+  --base-black: #0f172a;
+  
+  /* Generisanje sive skale miksovanjem crne i bele */
+  --base-50:  color-mix(in srgb, var(--base-black), white 95%);
+  --base-100: color-mix(in srgb, var(--base-black), white 90%);
+  --base-200: color-mix(in srgb, var(--base-black), white 80%);
+  --base-300: color-mix(in srgb, var(--base-black), white 70%);
+  --base-400: color-mix(in srgb, var(--base-black), white 50%);
+  --base-500: color-mix(in srgb, var(--base-black), white 40%);
+  --base-600: color-mix(in srgb, var(--base-black), white 30%);
+  --base-700: color-mix(in srgb, var(--base-black), white 20%);
+  --base-800: color-mix(in srgb, var(--base-black), white 10%);
+  --base-900: var(--base-black);
+
+  /* --- 1c. SYSTEM (Razmaci, Radius, Fontovi) --- */
+  --font-main: system-ui, -apple-system, sans-serif;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 1rem;
+  --spacing-4: 1.5rem;
+  --spacing-5: 2rem;
+  --spacing-6: 3rem;
+}
+
+:root {
+  --primary-lighter: color-mix(in srgb, var(--primary), white 80%);
+  --primary-light:   color-mix(in srgb, var(--primary), white 40%);
+  --primary-dark:    color-mix(in srgb, var(--primary), black 10%);
+  --primary-darker:  color-mix(in srgb, var(--primary), black 30%);
+  
+  --secondary-lighter: color-mix(in srgb, var(--secondary), white 80%);
+  --secondary-light:   color-mix(in srgb, var(--secondary), white 40%);
+  --secondary-dark:    color-mix(in srgb, var(--secondary), black 10%);
+}
+
+/* =========================================
+   2. RESET & BASE
+   ========================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--base-50);
+  color: var(--base-900);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 { line-height: 1.2; font-weight: 700; margin-bottom: var(--spacing-3); color: var(--base-900); }
+p { margin-bottom: var(--spacing-3); }
+a { color: var(--primary); text-decoration: none; font-weight: 500; }
+a:hover { text-decoration: underline; }
+img { max-width: 100%; display: block; }
+
+/* =========================================
+   3. LAYOUT UTILITIES
+   ========================================= */
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-3); }
+
+/* Flexbox Helpers */
+.flex { display: flex; }
+.flex-col { display:flex; flex-direction: column; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.items-center { align-items: center; }
+.items-end { align-items: end; }
+.justify-center { justify-content: center;}
+.justify-between { justify-content: space-between; }
+.justify-end { justify-content: end;} 
+.gap-1 { gap: var(--spacing-1); }
+.gap-2 { gap: var(--spacing-2); }
+.gap-3 { gap: var(--spacing-3); }
+.gap-6 { gap:var(--spacing-6); }
+
+/* Grid Helpers */
+.grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--spacing-3); }
+.col-span-2 { grid-column: span 2; }
+.col-span-4 { grid-column: span 4; }
+.col-span-6 { grid-column: span 6; }
+.col-span-12 { grid-column: span 12; }
+
+@media (max-width: 768px) {
+  .col-span-4, .col-span-6 { grid-column: span 12; } /* Mobile responsive */
+}
+
+/* =========================================
+   4. COMPONENTS (Modern UI)
+   ========================================= */
+
+/* --- Buttons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  font-size: 0.95rem;
+  background-color: var(--base-200);
+  color: var(--base-900);
+}
+
+.btn:hover { filter: brightness(0.95); transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+
+.btn-primary { background-color: var(--primary); color: white; }
+.btn-primary:hover { background-color: var(--primary-dark); filter: none; }
+
+.btn-secondary { background-color: var(--secondary); color: white; }
+.btn-secondary:hover { background-color: var(--secondary-dark); filter: none; }
+
+.btn-danger { background-color: var(--danger); color: white; }
+.btn-outline { background: transparent; border: 1px solid var(--base-300); color: var(--base-900); }
+
+.card {
+  background: var(--base-white);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--base-200);
+}
+
+/* --- Forms & Inputs --- */
+.form-group { margin-bottom: var(--spacing-3); }
+.label { display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: var(--spacing-1); color: var(--base-700); }
+
+.input, .select, .textarea {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--base-300);
+  background: var(--base-white);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.input:focus, .select:focus, .textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-lighter);
+}
+
+/* --- Alerts/Badges --- */
+.alert {
+  padding: var(--spacing-3);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-3);
+  background: var(--base-200);
+  border-left: 4px solid var(--base-500);
+}
+
+.alert-info { background: color-mix(in srgb, var(--info), white 85%); border-color: var(--info); color: color-mix(in srgb, var(--info), black 40%); }
+.alert-success { background: color-mix(in srgb, var(--success), white 85%); border-color: var(--success); color: color-mix(in srgb, var(--success), black 40%); }
+.alert-danger { background: color-mix(in srgb, var(--danger), white 85%); border-color: var(--danger); color: color-mix(in srgb, var(--danger), black 40%); }
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  background: var(--base-200);
+  color: var(--base-700);
+}
+
+/* =========================================
+   5. UTILITIES (Spacing & Text)
+   ========================================= */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-sm { font-size: 0.875rem; }
+.text-lg { font-size: 1.125rem; }
+.text-muted { color: var(--base-500); }
+
+/* Margins & Paddings Helpers */
+.m-0 { margin: 0; }
+.mt-1 { margin-top: var(--spacing-1); } .mt-2 { margin-top: var(--spacing-2); } .mt-3 { margin-top: var(--spacing-3); }
+.mb-1 { margin-bottom: var(--spacing-1); } .mb-2 { margin-bottom: var(--spacing-2); } .mb-3 { margin-bottom: var(--spacing-3); }
+.p-3 { padding: var(--spacing-3); } .p-4 { padding: var(--spacing-4); }
+
+.w-full { width: 100%; }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+
+.horizontal-spacer { height: 0.1rem; width:100%; margin:1rem 0; background:linear-gradient(to right, transparent, var(--primary), transparent)}
